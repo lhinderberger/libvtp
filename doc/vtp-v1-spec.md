@@ -1,7 +1,7 @@
 +++ DRAFT SPECIFICATION +++
-Draft revision 1b
+Draft revision 1c
 
-# VTP Specification v1.0
+# VTP Specification Version 1
 
 ## Summary
 The VTP specification specifies representations of a data format for storing
