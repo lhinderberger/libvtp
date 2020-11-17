@@ -1,6 +1,8 @@
 #include <vtp/codec.h>
 
+#include <stdio.h>
+
 int main() {
-    hello();
+    puts("Not implemented\n");
     return 0;
 }
