@@ -23,7 +23,13 @@ libvtp will use CMake as its build system.
 
 TODO: Further instructions
 
+## Dependencies
+libvtp depends on a C89-compliant C-compiler.
+
+For running the unit tests, libvtp also depends on `greatest` by Scott Vokes,
+which is supplied in the `vendor/` directory.
+
 ## Copyright
-(C) 2020 Lucas Hinderberger
+libvtp is (C) 2020 Lucas Hinderberger
 
 Licensing will be determined at a later point in time.
