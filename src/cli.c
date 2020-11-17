@@ -1,4 +1,4 @@
-#include "codec.h"
+#include <vtp/codec.h>
 
 int main() {
     hello();
