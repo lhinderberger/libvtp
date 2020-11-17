@@ -131,8 +131,6 @@ With terminal rules as defined in Appendix B of [RFC5234](#RFC5234).
 
 
 ## Literature
-<a name="PattersonHennessy2018">
-[PattersonHennessy2018] Patterson David A., Hennessy, John L. "Computer Organization and Design: The Hardware/Software Interface RISC-V Edition", Cambridge, MA: Elsevier, Morgan Kaufmann Publishers, 2018
+<a name="PattersonHennessy2018">[PattersonHennessy2018] Patterson David A., Hennessy, John L. "Computer Organization and Design: The Hardware/Software Interface RISC-V Edition", Cambridge, MA: Elsevier, Morgan Kaufmann Publishers, 2018
 
-<a name="RFC5234">
-[RFC5234] Crocker, D., Overell P., "Augmented BNF for Syntax Specifications: ABNF", RFC 5234, RFC Editor, http://www.rfc-editor.org/info/rfc5234, January 2008
+<a name="RFC5234">[RFC5234] Crocker, D., Overell P., "Augmented BNF for Syntax Specifications: ABNF", RFC 5234, RFC Editor, http://www.rfc-editor.org/info/rfc5234, January 2008
