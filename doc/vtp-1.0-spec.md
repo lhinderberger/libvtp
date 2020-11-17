@@ -52,12 +52,12 @@ a single binary number, equivalent to a multi-byte little-endian number.
 Each instruction word begins with a 4 bit instruction code, which in turn
 determines the instruction format used.
 
-Code      | Instruction    | Instr. Format
-----------|----------------|---------------
-     0000 | Increment time | Format A
-     0001 | Set frequency  | Format B
-     0010 | Set amplitude  | Format B
-0011-1111 | Reserved       | -
+Code  | Instruction    | Instr. Format
+------|----------------|---------------
+0000  | Increment time | Format A
+0001  | Set frequency  | Format B
+0010  | Set amplitude  | Format B
+other | Reserved       | -
 
 #### Instruction Formats
 ##### Instruction Format A
