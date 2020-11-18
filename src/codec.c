@@ -21,13 +21,13 @@ void vtp_decode_params_a(VTPInstructionWord instruction, VTPInstructionParamsA* 
 }
 
 void vtp_decode_params_b(VTPInstructionWord instruction, VTPInstructionParamsB* out) {
-    out->channel_select = (instruction & 0x0FF00000u) >> 20u;
-    out->time_offset = (instruction & 0x000FFC00u) >> 10u;
-    out->parameter_a = instruction & 0x000003FFu;
+    out->channel_select = (unsigned char)((instruction & 0x0FF00000u) >> 20u);
+    out->time_offset = (unsigned int)((instruction & 0x000FFC00u) >> 10u);
+    out->parameter_a = (unsigned int)(instruction & 0x000003FFu);
 }
 
 void vtp_encode_params_a(const VTPInstructionParamsA* params, VTPInstructionWord* out) {
-    *out |= ((unsigned long)params->parameter_a) & 0xFFFFFFFu;
+    *out |= params->parameter_a & 0xFFFFFFFu;
 }
 
 void vtp_encode_params_b(const VTPInstructionParamsB* params, VTPInstructionWord* out) {
@@ -37,7 +37,7 @@ void vtp_encode_params_b(const VTPInstructionParamsB* params, VTPInstructionWord
 }
 
 VTPError vtp_decode_instruction_v1(VTPInstructionWord instruction, VTPInstructionV1* out) {
-    out->code = (instruction & 0xF0000000u) >> 28u;
+    out->code = (VTPInstructionCode)((instruction & 0xF0000000u) >> 28u);
 
     switch (out->code) {
         case VTP_INST_INCREMENT_TIME:

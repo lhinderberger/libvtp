@@ -17,38 +17,38 @@
 #ifndef LIBVTP_INSTRUCTION_TYPES_H
 #define LIBVTP_INSTRUCTION_TYPES_H
 
-enum _VTPInstructionCode {
+enum eVTPInstructionCode {
     VTP_INST_INCREMENT_TIME = 0,
     VTP_INST_SET_FREQUENCY = 1,
     VTP_INST_SET_AMPLITUDE = 2
 };
-typedef enum _VTPInstructionCode VTPInstructionCode;
+typedef enum eVTPInstructionCode VTPInstructionCode;
 
-struct _VTPInstructionParamsA {
+struct sVTPInstructionParamsA {
     unsigned long parameter_a;
 };
-typedef struct _VTPInstructionParamsA VTPInstructionParamsA;
+typedef struct sVTPInstructionParamsA VTPInstructionParamsA;
 
-struct _VTPInstructionParamsB {
+struct sVTPInstructionParamsB {
     unsigned char channel_select;
     unsigned int time_offset;
     unsigned int parameter_a;
 };
-typedef struct _VTPInstructionParamsB VTPInstructionParamsB;
+typedef struct sVTPInstructionParamsB VTPInstructionParamsB;
 
 
-union _VTPInstructionParamsV1 {
+union uVTPInstructionParamsV1 {
     VTPInstructionParamsA format_a;
     VTPInstructionParamsB format_b;
 };
-typedef union _VTPInstructionParamsV1 VTPInstructionParamsV1;
+typedef union uVTPInstructionParamsV1 VTPInstructionParamsV1;
 
 
-struct _VTPInstructionV1 {
+struct sVTPInstructionV1 {
     VTPInstructionCode code;
     VTPInstructionParamsV1 params;
 };
-typedef struct _VTPInstructionV1 VTPInstructionV1;
+typedef struct sVTPInstructionV1 VTPInstructionV1;
 
 typedef unsigned long VTPInstructionWord;
 

@@ -103,7 +103,7 @@ TEST invalid_instruction_code_yields_error(void) {
     VTPInstructionV1 invalid_instruction, temp_instruction;
     VTPInstructionWord temp_instruction_word;
 
-    invalid_instruction.code = 0xFE;
+    invalid_instruction.code = (VTPInstructionCode)0xFE;
 
     ASSERT_EQ(VTP_INVALID_INSTRUCTION_CODE, vtp_encode_instruction_v1(&invalid_instruction, &temp_instruction_word));
     ASSERT_EQ(VTP_INVALID_INSTRUCTION_CODE, vtp_decode_instruction_v1(invalid_instruction_word, &temp_instruction));

@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-#include <vtp/codec.h>
-
 #include <stdio.h>
 
 int main() {
