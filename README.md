@@ -3,7 +3,7 @@ A library for encoding and decoding vibrotactile patterns
 
 ## Summary
 libvtp is a library for encoding and decoding vibrotactile patterns using
-the (yet-to-be-specified) VTP format.
+the (in-development) VTP format.
 
 Specification drafts can be found in the `doc/` subdirectory.
 
@@ -19,17 +19,33 @@ Additionally, libvtp will contain the CLI tools:
 - `vtp disassemble` which derives VTP Assembly Code from VTP Binary Format
 
 ## Usage
-libvtp will use CMake as its build system.
+libvtp should compile on any compiler that conforms to the C90 standard.
+If it doesn't in your case, please file a bug report on libvtp's issue tracker
+(see section Contact).
 
-TODO: Further instructions
+libvtp uses CMake as its build system, but it should be trivially possible to
+port it to other build systems, if needed.
+
+TODO: Provide library documentation
+TODO: Provide CLI usage information
 
 ## Dependencies
-libvtp depends on a C90-compliant C-compiler.
+libvtp's unit tests depend on `greatest` by Scott Vokes.
 
-For running the unit tests, libvtp also depends on `greatest` by Scott Vokes,
-which is supplied in the `vendor/` directory.
+For details about the dependencies used, please refer to
+the [NOTICE](./NOTICE) file
 
 ## Copyright
 libvtp is (C) 2020 Lucas Hinderberger
 
-Licensing will be determined at a later point in time.
+It is licensed under the Apache Licence Version 2.0.
+For details, please refer to the [LICENCE](./LICENSE) file and
+the [NOTICE](./NOTICE) file.
+
+## Contact
+The repository of libvtp can be found at https://github.com/lhinderberger/libvtp
+
+You're welcome to file bug reports, other issues and pull requests there.
+
+You can also contact the author via email at mail@lhinderberger.com
+
