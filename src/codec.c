@@ -40,11 +40,11 @@ VTPError vtp_decode_instruction_v1(VTPInstructionWord instruction, VTPInstructio
     out->code = (instruction & 0xF0000000u) >> 28u;
 
     switch (out->code) {
-        case 0:
+        case VTP_INST_INCREMENT_TIME:
             vtp_decode_params_a(instruction, &out->params.format_a);
             break;
-        case 1:
-        case 2:
+        case VTP_INST_SET_AMPLITUDE:
+        case VTP_INST_SET_FREQUENCY:
             vtp_decode_params_b(instruction, &out->params.format_b);
             break;
         default:
