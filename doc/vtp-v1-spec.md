@@ -116,7 +116,7 @@ TODO: More detailed explanation
 ```abnf
 pattern = *(format-a / format-b / comment)
 
-format-a = "time" *WSP *DIGIT "ms" line-end
+format-a = "time" *WSP time-offset line-end
 format-b = ("freq" / "amp") *WSP [time-offset] *WSP channel-select *WSP *DIGIT line-end
 
 channel-select = "ch" ("*" / *DIGIT)
