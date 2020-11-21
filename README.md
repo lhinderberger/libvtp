@@ -18,8 +18,11 @@ The library contains the following modules:
 
 Additionally, libvtp will contain the CLI tools:
 
-- `vtp assemble` which assembles VTP Assembly Code into the VTP Binary Format
-- `vtp disassemble` which derives VTP Assembly Code from VTP Binary Format
+- `vtp-assemble` which assembles VTP Assembly Code into the VTP Binary Format
+- `vtp-disassemble` which derives VTP Assembly Code from VTP Binary Format
+
+They are mostly untested and to be considered as strictly experimental at this
+point.
 
 ## Usage
 libvtp should compile on any compiler that conforms to the C90 standard.
