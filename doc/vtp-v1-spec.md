@@ -118,12 +118,13 @@ pattern = *instruction
 instruction = format-a / format-b / comment
 
 format-a = "time" *WSP time-offset line-end
-format-b = ("freq" / "amp") *WSP [time-offset] *WSP channel-select *WSP *DIGIT line-end
+format-b = ("freq" / "amp") *WSP [time-offset] *WSP channel-select *WSP number line-end
 
-channel-select = "ch" ("*" / *DIGIT)
-time-offset = "+" *DIGIT "ms"
+channel-select = "ch" ("*" / number)
+time-offset = "+" number "ms"
 
 comment = "--" *VCHAR LF
+number = *DIGIT
 line-end = *WSP (comment / LF)
 ```
 
