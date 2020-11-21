@@ -16,13 +16,27 @@
 
 #include "../vendor/greatest/greatest.h"
 
-GREATEST_MAIN_DEFS();
+#include <vtp/fold.h>
 
-GREATEST_SUITE_EXTERN(codec_suite);
-GREATEST_SUITE_EXTERN(fold_suite);
+TEST fold_yields_expected_accumulation(void) {
+    FAIL();
+}
 
-int main(int argc, char ** argv) {
-    GREATEST_MAIN_BEGIN();
-    RUN_SUITE(codec_suite);
-    GREATEST_MAIN_END();
+TEST fold_until_stops_at_the_right_time(void) {
+    FAIL();
+}
+
+TEST fold_until_past_does_nothing(void) {
+    FAIL();
+}
+
+TEST fold_with_no_instructions_does_nothing(void) {
+    FAIL();
+}
+
+GREATEST_SUITE(fold_suite) {
+    RUN_TEST(fold_yields_expected_accumulation);
+    RUN_TEST(fold_until_stops_at_the_right_time);
+    RUN_TEST(fold_until_past_does_nothing);
+    RUN_TEST(fold_with_no_instructions_does_nothing);
 }

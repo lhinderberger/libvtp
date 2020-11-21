@@ -7,11 +7,14 @@ the (in-development) VTP format.
 
 Specification drafts can be found in the `doc/` subdirectory.
 
-The library will contain the following modules:
+The library contains the following modules:
 
-- `codec` provides an abstraction layer for reading/writing VTP Binary files
-- `assembler` provides a parser that can read VTP Assembly Code
-- `serialize-asm` provides serialization of patterns to VTP Assembly Code
+- **`codec`**
+  provides an abstraction layer for reading/writing VTP Binary files
+- **`fold`**
+  provides a fold algorithm to accumulate the effects of multiple
+  VTP instructions, e.g. for the purpose of simulation or mapping VTP to
+  a sampling-like interface
 
 Additionally, libvtp will contain the CLI tools:
 

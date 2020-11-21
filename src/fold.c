@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-#include "../vendor/greatest/greatest.h"
+#include <stdio.h>
+#include <vtp/fold.h>
 
-GREATEST_MAIN_DEFS();
-
-GREATEST_SUITE_EXTERN(codec_suite);
-GREATEST_SUITE_EXTERN(fold_suite);
-
-int main(int argc, char ** argv) {
-    GREATEST_MAIN_BEGIN();
-    RUN_SUITE(codec_suite);
-    GREATEST_MAIN_END();
+VTPError vtp_fold_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1* instructions, size_t n_instructions) {
+    fprintf(stderr, "Not implemented\n");
+    return 255;
 }
+
+VTPError vtp_fold_until_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1* instructions, size_t n_instructions, unsigned long until_ms, size_t* n_processed) {
+    fprintf(stderr, "Not implemented\n");
+    return 255;
+}
+
