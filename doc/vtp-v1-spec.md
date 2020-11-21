@@ -115,7 +115,7 @@ TODO: More detailed explanation
 ### ABNF Grammar
 ```abnf
 pattern = *instruction
-instruction = format-a / format-b / comment
+instruction = format-a / format-b / comment / empty-line
 
 format-a = "time" *WSP time-offset line-end
 format-b = ("freq" / "amp") *WSP [time-offset] *WSP channel-select *WSP number line-end
@@ -124,6 +124,7 @@ channel-select = "ch" ("*" / number)
 time-offset = "+" number "ms"
 
 comment = "--" *VCHAR LF
+empty-line = *WSP LF
 number = *DIGIT
 line-end = *WSP (comment / LF)
 ```
