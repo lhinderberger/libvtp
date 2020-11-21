@@ -117,16 +117,16 @@ TODO: More detailed explanation
 pattern = *instruction
 instruction = format-a / format-b / comment / empty-line
 
-format-a = "time" *WSP time-offset line-end
-format-b = ("freq" / "amp") *WSP [time-offset] *WSP channel-select *WSP number line-end
+format-a = "time" 1*WSP time-offset line-end
+format-b = ("freq" / "amp") 1*WSP [time-offset] 1*WSP channel-select 1*WSP number line-end
 
 channel-select = "ch" ("*" / number)
 time-offset = "+" number "ms"
 
 comment = "--" *VCHAR LF
-empty-line = *WSP LF
+empty-line = 1*WSP LF
 number = *DIGIT
-line-end = *WSP (comment / LF)
+line-end = 1*WSP (comment / LF)
 ```
 
 With terminal rules as defined in Appendix B of [RFC5234](#RFC5234).
