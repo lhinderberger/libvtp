@@ -68,7 +68,7 @@ TEST fold_yields_expected_accumulation(void) {
     ASSERT_EQ(234, accumulator.amplitudes[2]);
     ASSERT_EQ(789, accumulator.frequencies[0]);
     ASSERT_EQ(567, accumulator.frequencies[1]);
-    ASSERT_EQ(234, accumulator.amplitudes[2]);
+    ASSERT_EQ(234, accumulator.frequencies[2]);
 
     PASS();
 }
