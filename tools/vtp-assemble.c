@@ -24,9 +24,16 @@
 #define NEXT_CHAR(parser) (parser->input[0])
 #define TOKEN_BUFFER_SIZE (16)
 
+enum eOutputMode {
+    OUTPUT_MODE_DEFAULT = 0,
+    OUTPUT_MODE_C_ARRAY
+};
+typedef enum eOutputMode OutputMode;
+
 struct sAssemblerArgs {
     FILE* input;
     FILE* output;
+    OutputMode output_mode;
 };
 typedef struct sAssemblerArgs AssemblerArgs;
 
@@ -155,7 +162,7 @@ int validate_instruction(const VTPInstructionV1* instruction, unsigned int line)
     return 1;
 }
 
-void write_instruction(FILE* f, VTPInstructionWord instruction) {
+void write_instruction_binary(FILE* f, VTPInstructionWord instruction) {
     unsigned char buffer[4];
 
     buffer[0] = (instruction >> 24u) & 0xFFu;
@@ -169,10 +176,16 @@ void write_instruction(FILE* f, VTPInstructionWord instruction) {
     }
 }
 
+void write_instruction_hex(FILE* f, VTPInstructionWord instruction, int first) {
+    if (!first)
+        fputs(", ", f);
+    fprintf(f, "0x%08lx", instruction);
+}
+
 int main(int argc, char** args) {
     AssemblerArgs parsed_args;
     char line_buffer[LINE_BUFFER_SIZE];
-    int instructions_valid;
+    int n_instructions, instructions_valid;
     Parser parser;
     ParserError err;
     unsigned int line;
@@ -184,6 +197,7 @@ int main(int argc, char** args) {
 
     instructions_valid = 1;
     line = 0;
+    n_instructions = 0;
 
     while (fgets(line_buffer, LINE_BUFFER_SIZE, parsed_args.input)) {
         line++;
@@ -205,6 +219,8 @@ int main(int argc, char** args) {
         if (err == PARSER_EOF)
             continue;
 
+        n_instructions++;
+
         if (!validate_instruction(&instruction, line))
             instructions_valid = 0;
 
@@ -214,7 +230,14 @@ int main(int argc, char** args) {
                 exit(1);
             }
 
-            write_instruction(parsed_args.output, instruction_word);
+            switch (parsed_args.output_mode) {
+                case OUTPUT_MODE_DEFAULT:
+                    write_instruction_binary(parsed_args.output, instruction_word);
+                    break;
+                case OUTPUT_MODE_C_ARRAY:
+                    write_instruction_hex(parsed_args.output, instruction_word, n_instructions == 1);
+                    break;
+            }
         }
     }
 
@@ -557,15 +580,24 @@ ParserError parse_line_end(Parser* parser) {
 
 void read_command_line_args(int argc, char** args, AssemblerArgs* out) {
     int i;
+    static const char* ARGUMENT_FORMAT = "%20s %s\n";
 
     memset(out, 0, sizeof(AssemblerArgs));
 
     for (i=1; i < argc; i++) {
         char* arg = args[i];
 
-        if (!strcmp(arg, "-o")) {
+        if (!strcmp(arg, "-c")) {
+            if (out->output_mode) {
+                fprintf(stderr, "Duplicate output mode specified: %s\n", arg);
+                exit(1);
+            }
+
+            out->output_mode = OUTPUT_MODE_C_ARRAY;
+        }
+        else if (!strcmp(arg, "-o")) {
             if (i+1 == argc) {
-                fprintf(stderr, "Option without corresponding parameter: %s", arg);
+                fprintf(stderr, "Option without corresponding parameter: %s\n", arg);
                 exit(1);
             }
 
@@ -593,8 +625,9 @@ void read_command_line_args(int argc, char** args, AssemblerArgs* out) {
             fputs("By default, it reads from stdin and writes to stdout, but you can override this using\n", stderr);
             fputs("the command line parameters listed below.\n\n", stderr);
 
-            fputs("INPUT_FILENAME\t\tThe file from which the VTP Assembly Code shall be read (default: stdin)\n", stderr);
-            fputs("-o OUTPUT_FILENAME\tThe file to which the VTP Binary Code shall be written (default: stdout)\n", stderr);
+            fprintf(stderr, ARGUMENT_FORMAT, "INPUT_FILENAME", "The file from which the VTP Assembly Code shall be read (default: stdin)");
+            fprintf(stderr, ARGUMENT_FORMAT, "-c", "Output comma-separated C-style hexadecimal numbers instead of binary");
+            fprintf(stderr, ARGUMENT_FORMAT, "-o OUTPUT_FILENAME", "The file to which the VTP Binary Code shall be written (default: stdout)");
 
             exit(0);
         }
