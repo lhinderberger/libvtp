@@ -1,9 +1,10 @@
 libvtp contains the following dependencies:
 
 
-greatest, located in vendor/greatest:
+greatest 1.4.2 (modified), located in vendor/greatest:
 
 Copyright (c) 2011-2019 Scott Vokes <vokes.s@gmail.com>
+Modifications Copyright (c) 2020 Lucas Hinderberger
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

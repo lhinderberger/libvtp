@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2011-2019 Scott Vokes <vokes.s@gmail.com>
+ * Modifications Copyright (c) 2020 Lucas Hinderberger
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -12,6 +13,15 @@
  * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+/*
+ * This is a modified version of greatest v1.4.2.
+ * It contains the following modifications by Lucas Hinderberger:
+ *
+ * - Added casts to unsigned char at GREATEST_LIST_ONLY, GREATEST_FIRST_FAIL
+ *   and GREATEST_ABORT_ON_FAIL to prevent clang-tidy warnings.
+ *   Upstream PR: https://github.com/silentbicycle/greatest/pull/104
  */
 
 #ifndef GREATEST_H
@@ -413,11 +423,11 @@ typedef enum greatest_test_res {
 /* Check if the test runner is in verbose mode. */
 #define GREATEST_IS_VERBOSE() ((greatest_info.verbosity) > 0)
 #define GREATEST_LIST_ONLY()                                            \
-    (greatest_info.flags & GREATEST_FLAG_LIST_ONLY)
+    (greatest_info.flags & (unsigned char)GREATEST_FLAG_LIST_ONLY)
 #define GREATEST_FIRST_FAIL()                                           \
-    (greatest_info.flags & GREATEST_FLAG_FIRST_FAIL)
+    (greatest_info.flags & (unsigned char)GREATEST_FLAG_FIRST_FAIL)
 #define GREATEST_ABORT_ON_FAIL()                                        \
-    (greatest_info.flags & GREATEST_FLAG_ABORT_ON_FAIL)
+    (greatest_info.flags & (unsigned char)GREATEST_FLAG_ABORT_ON_FAIL)
 #define GREATEST_FAILURE_ABORT()                                        \
     (GREATEST_FIRST_FAIL() &&                                           \
         (greatest_info.suite.failed > 0 || greatest_info.failed > 0))
