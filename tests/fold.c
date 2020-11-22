@@ -61,7 +61,7 @@ TEST fold_yields_expected_accumulation(void) {
     DECLARE_TEST
     PREPARE_TEST
 
-    vtp_fold_v1(&accumulator, instructions, N_TEST_INSTRUCTIONS);
+    ASSERT_EQ(VTP_OK, vtp_fold_v1(&accumulator, instructions, N_TEST_INSTRUCTIONS));
 
     ASSERT_EQ(234, accumulator.amplitudes[0]);
     ASSERT_EQ(234, accumulator.amplitudes[1]);
@@ -88,7 +88,7 @@ TEST fold_with_no_instructions_does_nothing(void) {
     accumulator.frequencies[0] = accumulator.frequencies[1] = accumulator.frequencies[2] = 2311;
     accumulator.amplitudes[0] = accumulator.amplitudes[1] = accumulator.amplitudes[2] = 1995;
 
-    vtp_fold_v1(&accumulator, instructions, 0);
+    ASSERT_EQ(VTP_OK, vtp_fold_v1(&accumulator, instructions, 0));
 
     ASSERT_EQ(2311, frequencies[0]);
     ASSERT_EQ(2311, frequencies[1]);
