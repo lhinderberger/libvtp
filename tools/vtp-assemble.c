@@ -106,7 +106,6 @@ ParserError parse_time_offset(Parser* parser, unsigned long* out);
 ParserError parse_comment(Parser* parser);
 ParserError parse_empty_line(Parser* parser);
 ParserError parse_line_end(Parser* parser);
-ParserError parse_whitespace(Parser* parser);
 
 void read_command_line_args(int argc, char** args, AssemblerArgs* out);
 
