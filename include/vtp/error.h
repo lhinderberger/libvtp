@@ -19,6 +19,7 @@
 
 enum eVTPError {
     VTP_OK,
+    VTP_CHANNEL_OUT_OF_RANGE,
     VTP_INVALID_INSTRUCTION_CODE
 };
 

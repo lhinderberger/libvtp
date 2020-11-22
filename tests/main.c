@@ -24,5 +24,6 @@ GREATEST_SUITE_EXTERN(fold_suite);
 int main(int argc, char ** argv) {
     GREATEST_MAIN_BEGIN();
     RUN_SUITE(codec_suite);
+    RUN_SUITE(fold_suite);
     GREATEST_MAIN_END();
 }
