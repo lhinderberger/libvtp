@@ -27,4 +27,6 @@ VTPError vtp_encode_instruction_v1(const VTPInstructionV1* instruction, VTPInstr
 VTPError vtp_decode_instructions_v1(const VTPInstructionWord instructions[], VTPInstructionV1 out[], size_t n);
 VTPError vtp_encode_instructions_v1(const VTPInstructionV1 instructions[], VTPInstructionWord out[], size_t n);
 
+unsigned long vtp_get_time_offset_v1(const VTPInstructionV1* instruction);
+
 #endif

@@ -28,8 +28,8 @@ struct sVTPAccumulatorV1 {
 };
 typedef struct sVTPAccumulatorV1 VTPAccumulatorV1;
 
-VTPError vtp_fold_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1* instructions, size_t n_instructions);
+VTPError vtp_fold_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1 instructions[], size_t n_instructions);
 VTPError vtp_fold_single_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1* instruction);
-VTPError vtp_fold_until_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1* instructions, size_t n_instructions, unsigned long until_ms, size_t* n_processed);
+VTPError vtp_fold_until_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1 instructions[], size_t n_instructions, unsigned long until_ms, size_t* n_processed);
 
 #endif

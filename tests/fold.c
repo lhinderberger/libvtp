@@ -74,11 +74,77 @@ TEST fold_yields_expected_accumulation(void) {
 }
 
 TEST fold_until_stops_at_the_right_time(void) {
-    FAIL();
+    DECLARE_TEST
+    size_t n_processed;
+
+    PREPARE_TEST
+
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions, N_TEST_INSTRUCTIONS, 0, &n_processed));
+    ASSERT_EQ(3, n_processed);
+    ASSERT_EQ(123, accumulator.amplitudes[0]);
+    ASSERT_EQ(123, accumulator.amplitudes[1]);
+    ASSERT_EQ(123, accumulator.amplitudes[2]);
+    ASSERT_EQ(234, accumulator.frequencies[0]);
+    ASSERT_EQ(345, accumulator.frequencies[1]);
+    ASSERT_EQ(234, accumulator.frequencies[2]);
+
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions + 3, N_TEST_INSTRUCTIONS - 3, 10, &n_processed));
+    ASSERT_EQ(0, n_processed);
+    ASSERT_EQ(123, accumulator.amplitudes[0]);
+    ASSERT_EQ(123, accumulator.amplitudes[1]);
+    ASSERT_EQ(123, accumulator.amplitudes[2]);
+    ASSERT_EQ(234, accumulator.frequencies[0]);
+    ASSERT_EQ(345, accumulator.frequencies[1]);
+    ASSERT_EQ(234, accumulator.frequencies[2]);
+
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions + 3, N_TEST_INSTRUCTIONS - 3, 50, &n_processed));
+    ASSERT_EQ(2, n_processed);
+    ASSERT_EQ(123, accumulator.amplitudes[0]);
+    ASSERT_EQ(123, accumulator.amplitudes[1]);
+    ASSERT_EQ(123, accumulator.amplitudes[2]);
+    ASSERT_EQ(789, accumulator.frequencies[0]);
+    ASSERT_EQ(456, accumulator.frequencies[1]);
+    ASSERT_EQ(234, accumulator.frequencies[2]);
+
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions + 5, N_TEST_INSTRUCTIONS - 5, 2050, &n_processed));
+    ASSERT_EQ(3, n_processed);
+    ASSERT_EQ(234, accumulator.amplitudes[0]);
+    ASSERT_EQ(234, accumulator.amplitudes[1]);
+    ASSERT_EQ(234, accumulator.amplitudes[2]);
+    ASSERT_EQ(789, accumulator.frequencies[0]);
+    ASSERT_EQ(567, accumulator.frequencies[1]);
+    ASSERT_EQ(234, accumulator.frequencies[2]);
+
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions + 8, N_TEST_INSTRUCTIONS - 8, 231195, &n_processed));
+    ASSERT_EQ(0, n_processed);
+    ASSERT_EQ(234, accumulator.amplitudes[0]);
+    ASSERT_EQ(234, accumulator.amplitudes[1]);
+    ASSERT_EQ(234, accumulator.amplitudes[2]);
+    ASSERT_EQ(789, accumulator.frequencies[0]);
+    ASSERT_EQ(567, accumulator.frequencies[1]);
+    ASSERT_EQ(234, accumulator.frequencies[2]);
+
+    PASS();
 }
 
 TEST fold_until_past_does_nothing(void) {
-    FAIL();
+    DECLARE_TEST
+    size_t n_processed;
+
+    PREPARE_TEST
+
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions, N_TEST_INSTRUCTIONS, 0, &n_processed));
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions, N_TEST_INSTRUCTIONS, 50, &n_processed));
+    ASSERT_EQ(VTP_OK, vtp_fold_until_v1(&accumulator, instructions, N_TEST_INSTRUCTIONS, 5, &n_processed));
+
+    ASSERT_EQ(123, accumulator.amplitudes[0]);
+    ASSERT_EQ(123, accumulator.amplitudes[1]);
+    ASSERT_EQ(123, accumulator.amplitudes[2]);
+    ASSERT_EQ(789, accumulator.frequencies[0]);
+    ASSERT_EQ(456, accumulator.frequencies[1]);
+    ASSERT_EQ(234, accumulator.frequencies[2]);
+
+    PASS();
 }
 
 TEST fold_with_no_instructions_does_nothing(void) {

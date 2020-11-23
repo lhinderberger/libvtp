@@ -21,7 +21,7 @@ VTPError apply_fold_format_b(const VTPInstructionParamsB* parameters, VTPAccumul
 VTPError set_with_channel_select(unsigned int new_value, unsigned char channel_select, unsigned int* target, unsigned char n_channels);
 
 
-VTPError vtp_fold_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1* instructions, size_t n_instructions) {
+VTPError vtp_fold_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1 instructions[], size_t n_instructions) {
     size_t i;
     VTPError err;
 
@@ -48,9 +48,25 @@ VTPError vtp_fold_single_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV
     }
 }
 
-VTPError vtp_fold_until_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1* instructions, size_t n_instructions, unsigned long until_ms, size_t* n_processed) {
-    fprintf(stderr, "Not implemented\n");
-    return 255;
+VTPError vtp_fold_until_v1(VTPAccumulatorV1* accumulator, const VTPInstructionV1 instructions[], size_t n_instructions, unsigned long until_ms, size_t* n_processed) {
+    VTPError err;
+
+    if (n_processed)
+        *n_processed = 0;
+
+    while (n_instructions > 0 && (accumulator->milliseconds_elapsed + vtp_get_time_offset_v1(instructions)) <= until_ms) {
+        if ((err = vtp_fold_single_v1(accumulator, instructions)) != VTP_OK) {
+            return err;
+        }
+
+        n_instructions--;
+        instructions++;
+
+        if (n_processed)
+            *n_processed += 1;
+    }
+
+    return VTP_OK;
 }
 
 

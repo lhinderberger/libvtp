@@ -97,3 +97,15 @@ VTPError vtp_encode_instructions_v1(const VTPInstructionV1 instructions[], VTPIn
 
     return VTP_OK;
 }
+
+unsigned long vtp_get_time_offset_v1(const VTPInstructionV1* instruction) {
+    switch (instruction->code) {
+        case VTP_INST_INCREMENT_TIME:
+            return instruction->params.format_a.parameter_a;
+        case VTP_INST_SET_AMPLITUDE:
+        case VTP_INST_SET_FREQUENCY:
+            return instruction->params.format_b.time_offset;
+        default:
+            return 0;
+    }
+}
