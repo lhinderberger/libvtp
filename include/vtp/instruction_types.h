@@ -17,6 +17,10 @@
 #ifndef LIBVTP_INSTRUCTION_TYPES_H
 #define LIBVTP_INSTRUCTION_TYPES_H
 
+/*
+ * Instruction types in this file are defined according to the VTPv1 specification draft
+ */
+
 enum eVTPInstructionCode {
     VTP_INST_INCREMENT_TIME = 0,
     VTP_INST_SET_FREQUENCY = 1,

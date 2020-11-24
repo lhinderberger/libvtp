@@ -16,7 +16,7 @@ The library contains the following modules:
   VTP instructions, e.g. for the purpose of simulation or mapping VTP to
   a sampling-like interface
 
-Additionally, libvtp will contain the CLI tools:
+Additionally, libvtp contains the CLI tools:
 
 - `vtp-assemble` which assembles VTP Assembly Code into the VTP Binary Format
 - `vtp-disassemble` which derives VTP Assembly Code from VTP Binary Format
@@ -32,8 +32,14 @@ If it doesn't in your case, please file a bug report on libvtp's issue tracker
 libvtp uses CMake as its build system, but it should be trivially possible to
 port it to other build systems, if needed.
 
-TODO: Provide library documentation
-TODO: Provide CLI usage information
+The library API documentation can be generated using Doxygen, but it's probably
+quicker to just read through the very few and brief header files in the
+`include/vtp` directory.
+
+Usage information for the CLI tools can be printed using the `--help` option.
+Please be aware that they read from stdin by default, so if you run them without
+any input, they might appear to be frozen when in fact they're just waiting for
+the standard input.
 
 ## Dependencies
 libvtp's unit tests depend on `greatest` by Scott Vokes.
