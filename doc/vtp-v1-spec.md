@@ -17,7 +17,7 @@ In its current form, VTP is capable of representing vibrotactile patterns with
 
 - up to 255 actuators (channels)
 - a time resolution of 1ms
-- a frequency range of 0-1024 Hz with a resolution of 1Hz
+- a frequency range of 0-1023 Hz with a resolution of 1Hz
 - an amplitude resolution of 1024 steps
 
 
@@ -35,8 +35,7 @@ the following goals:
 It is intended to be wrapped within a container format that for example can
 provide additional metadata or synchronization with other media streams.
 
-TODO: Compression?
-TODO: Modulation?
+Compression and Modulation capabilities are not decided yet.
 
 ### Structure
 Due to the similarity of VTP Binary Format with machine language, this section
@@ -69,6 +68,9 @@ Content   Parameter A (contd.)                          |
 Bit       16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1
 ```
 
+- 4bit Instruction Code
+- 28bit Parameter A
+
 ##### Instruction Format B
 ```
 Content   | Instr.  | Channel Select        | Time
@@ -80,7 +82,10 @@ Content   Time Offset     | Parameter A                 |
 Bit       16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1
 ```
 
-Where channel select and time offset are unsigned integers.
+- 4bit Instruction Code
+- 8bit Channel Select (unsigned integer)
+- 10bit Time Offset (unsigned integer)
+- 10bit Parameter A
 
 ### Instructions
 #### 0000 - Increment time
@@ -110,7 +115,41 @@ milliseconds.
 
 
 ## Assembly Representation
-TODO: More detailed explanation
+A more human-friendly representation of VTP Binary instructions comes in the
+form of VTP Assembly Code.
+
+A VTP pattern can be transformed back and forth between the assembly code
+and its binary representation (with only comments and formatting being lost).
+
+For example, the assembly code
+
+```
+freq ch* 234
+amp ch* 123
+freq ch2 345
+
+freq +50ms ch2 456
+freq ch1 789
+
+time +2000ms
+amp ch* 234
+freq ch2 567
+```
+
+maps to the binary code
+
+```
+0x100000ea
+0x2000007b
+0x10200159
+0x1020c9c8
+0x10100315
+0x000007d0
+0x200000ea
+0x10200237
+```
+
+with each instruction word represented as a C-style hexadecimal number.
 
 ### ABNF Grammar
 ```abnf
@@ -130,6 +169,9 @@ line-end = 1*WSP (comment / LF)
 ```
 
 With terminal rules as defined in Appendix B of [RFC5234](#RFC5234).
+
+Note that this grammar does not contain any range checking for numbers.
+You should perform a validation step after parsing.
 
 
 ## Literature
