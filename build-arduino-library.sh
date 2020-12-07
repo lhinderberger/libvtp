@@ -54,6 +54,6 @@ done;
 sed -i '1s/^/\/\* This file has been modified for distribution as an Arduino library \*\/\n\n/' *.c *.h
 
 # Build zipfile for library
-zip ../libvtp.zip *
+zip ../libvtp-arduino.zip *
 
 echo "Arduino library built to $build_dir/ directory"
