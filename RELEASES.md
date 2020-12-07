@@ -6,6 +6,7 @@ The purpose of this release will be to provide an Arduino port of libvtp.
 
 ### Additions
 - A script to prepare an Arduino library zip of libvtp.
+- An example to showcase encoding of analog signals into VTP using Arduino.
 
 ### Modifications
 - Fixed a bug that would break instruction encoding on embedded platforms
