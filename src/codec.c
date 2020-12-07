@@ -55,7 +55,7 @@ VTPError vtp_decode_instruction_v1(VTPInstructionWord instruction, VTPInstructio
 }
 
 VTPError vtp_encode_instruction_v1(const VTPInstructionV1* instruction, VTPInstructionWord* out) {
-    *out = (instruction->code << 28u);
+    *out = ((unsigned long)instruction->code << 28u);
 
     switch (instruction->code) {
         case VTP_INST_INCREMENT_TIME:

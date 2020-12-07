@@ -8,6 +8,7 @@ The purpose of this release will be to provide an Arduino port of libvtp.
 - A script to prepare an Arduino library zip of libvtp.
 
 ### Modifications
+- Fixed a bug that would break instruction encoding on embedded platforms
 - .gitignore: Ignoring the `arduino/` build directory.
 - NOTICE: Clarification that some distributions may not contain the dependencies
 - README.md: Documentation of the Arduino build script
