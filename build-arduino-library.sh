@@ -45,6 +45,11 @@ done;
 # Adapt include paths
 sed -i 's/#include <vtp\//#include <vtp_/g' *.c *.h
 
+# Rename .c to .cpp
+for filename in *.c; do
+  mv "$filename" "$filename"pp;
+done;
+
 # Add notice of modification to source files
 sed -i '1s/^/\/\* This file has been modified for distribution as an Arduino library \*\/\n\n/' *.c *.h
 
