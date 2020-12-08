@@ -51,7 +51,7 @@ for filename in *.c; do
 done;
 
 # Add notice of modification to source files
-sed -i '1s/^/\/\* This file has been modified for distribution as an Arduino library \*\/\n\n/' *.c *.h
+sed -i '1s/^/\/\* This file has been modified for distribution as an Arduino library \*\/\n\n/' *.cpp *.h
 
 # Build zipfile for library
 zip ../libvtp-arduino.zip *
