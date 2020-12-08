@@ -1,6 +1,6 @@
 # Release Log of libvtp
 
-## In Development: v0.1.1
+## In Development: v0.2.0
 ### Summary
 The purpose of this release will be to provide an Arduino port of libvtp.
 
