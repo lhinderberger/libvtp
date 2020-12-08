@@ -66,7 +66,7 @@ unsigned long timeElapsed;
 void setup() {
   static unsigned int amplitudes[N_CHANNELS], frequencies[N_CHANNELS];
   
-  Serial.begin(9600);
+  Serial.begin(57600);
   while(!Serial);
   
   // Initializing the accumulator for N_CHANNELS, with 0ms elapsed and amplitudes and frequencies all set to zero
