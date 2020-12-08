@@ -1,8 +1,9 @@
 # Release Log of libvtp
 
-## In Development: v0.2.0
+## v0.2.0 - 2020-12-08
 ### Summary
-The purpose of this release will be to provide an Arduino port of libvtp.
+This release provides an Arduino port of libvtp, as well as a bug fix for
+embedded / legacy platforms.
 
 ### Additions
 - A script to prepare an Arduino library zip of libvtp.
