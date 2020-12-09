@@ -1,5 +1,13 @@
 # Release Log of libvtp
 
+
+## v???? - In development
+### Summary
+TODO
+
+### Modifications
+- Removed an unnecessary include of stdio.h in fold.c
+
 ## v0.2.0 - 2020-12-08
 ### Summary
 This release provides an Arduino port of libvtp, as well as a bug fix for

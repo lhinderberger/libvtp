@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-#include <stdio.h>
 #include <vtp/fold.h>
 
 VTPError apply_fold_format_b(const VTPInstructionParamsB* parameters, VTPAccumulatorV1* accumulator, unsigned int* target);
