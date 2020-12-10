@@ -7,6 +7,7 @@ TODO
 
 ### Modifications
 - Removed an unnecessary include of stdio.h in fold.c
+- Extended test for the fold algorithm
 
 ## v0.2.0 - 2020-12-08
 ### Summary
