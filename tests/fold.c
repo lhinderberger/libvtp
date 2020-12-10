@@ -175,9 +175,21 @@ TEST fold_with_no_instructions_does_nothing(void) {
     PASS();
 }
 
+TEST fold_with_out_of_range_channel_yields_error(void) {
+    DECLARE_TEST
+    PREPARE_TEST
+
+    instructions[2].params.format_b.channel_select = 23;
+
+    ASSERT_EQ(VTP_CHANNEL_OUT_OF_RANGE, vtp_fold_v1(&accumulator, instructions, 3));
+
+    PASS();
+}
+
 GREATEST_SUITE(fold_suite) {
     RUN_TEST(fold_yields_expected_accumulation);
     RUN_TEST(fold_until_stops_at_the_right_time);
     RUN_TEST(fold_until_past_does_nothing);
     RUN_TEST(fold_with_no_instructions_does_nothing);
+    RUN_TEST(fold_with_out_of_range_channel_yields_error);
 }
