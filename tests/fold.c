@@ -155,6 +155,17 @@ TEST fold_until_past_does_nothing(void) {
     PASS();
 }
 
+TEST fold_with_invalid_instruction_code_yields_error(void) {
+    DECLARE_TEST
+    PREPARE_TEST
+
+    instructions[2].code = 0xAB;
+
+    ASSERT_EQ(VTP_INVALID_INSTRUCTION_CODE, vtp_fold_v1(&accumulator, instructions, 3));
+
+    PASS();
+}
+
 TEST fold_with_no_instructions_does_nothing(void) {
     DECLARE_TEST
     PREPARE_TEST
@@ -190,6 +201,7 @@ GREATEST_SUITE(fold_suite) {
     RUN_TEST(fold_yields_expected_accumulation);
     RUN_TEST(fold_until_stops_at_the_right_time);
     RUN_TEST(fold_until_past_does_nothing);
+    RUN_TEST(fold_with_invalid_instruction_code_yields_error);
     RUN_TEST(fold_with_no_instructions_does_nothing);
     RUN_TEST(fold_with_out_of_range_channel_yields_error);
 }
