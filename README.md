@@ -61,6 +61,19 @@ libvtp's unit tests depend on `greatest` by Scott Vokes.
 For details about the dependencies used, please refer to
 the [NOTICE](./NOTICE) file
 
+## Versioning and Compatibility
+Versioning of libvtp follows the [Semantic Versioning](https://semver.org)
+convention.
+
+libvtp keeps a changelog in [RELEASES.md](./RELEASES.md)
+
+Until 1.0.0, any substantial changes to the library (breaking and non-breaking)
+will trigger an increase of the minor version, while bug fixes and similar minor
+improvements may trigger an increase of the patch version.
+
+Additionally, libvtp will strive to achieve ABI compatibility within major
+versions, once the stable release v1.0.0 has been published.
+
 ## Copyright
 libvtp is (C) 2020 Lucas Hinderberger
 
