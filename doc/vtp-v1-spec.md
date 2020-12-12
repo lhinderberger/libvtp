@@ -44,8 +44,10 @@ used there to describe instruction set architectures, as introduced for example
 in [PattersonHennessy2018](#PattersonHennessy2018).
 
 A VTP Binary file is a stream of VTP Instruction Words, with each instruction
-word having a size of 32 bits. For the avoidance of doubt, treat each word as
-a single binary number, equivalent to a multi-byte little-endian number.
+word having a size of 32 bits.
+
+When writing to / reading from byte streams, VTP Instruction Words are to be
+treated as big endian.
 
 Each instruction word begins with a 4 bit instruction code, which in turn
 determines the instruction format used.

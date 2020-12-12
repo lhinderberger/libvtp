@@ -6,6 +6,9 @@
 TODO
 
 ### Modifications
+- The specification previously falsely claimed the endianness to be little
+  endian, when in fact all VTP software so far has been big endian.
+  Changed specified endianness to big endian.
 - Removed an unnecessary include of stdio.h in fold.c
 - Extended test for the fold algorithm
 - README: Added section about versioning and compatiblity
