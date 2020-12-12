@@ -182,17 +182,16 @@ void write_parameters_format_a(FILE* output, const VTPInstructionParamsA* params
 }
 
 void write_parameters_format_b(FILE* output, const VTPInstructionParamsB* params) {
-    fputs("ch", output);
+    if (params->time_offset > 0) {
+        write_time_offset(output, params->time_offset);
+        fputc(' ', output);
+    }
 
+    fputs("ch", output);
     if (params->channel_select == 0)
         fputc('*', output);
     else
         fprintf(output, "%u", params->channel_select);
-
-    if (params->time_offset > 0) {
-        fputc(' ', output);
-        write_time_offset(output, params->time_offset);
-    }
 
     fprintf(output, " %u", params->parameter_a);
 }

@@ -14,6 +14,8 @@ TODO
 - The specification previously falsely claimed the endianness to be little
   endian, when in fact all VTP software so far has been big endian.
   Changed specified endianness to big endian.
+- Fixed bug in vtp-disassemble: Output of time offset and channel select was
+  the wrong way round
 - The vtp-assemble and vtp-disassemble tools and the encode_potis example were
   adapted to use vtp_read_instruction_words / vtp_write_instruction_words
 - Removed an unnecessary include of stdio.h in fold.c
