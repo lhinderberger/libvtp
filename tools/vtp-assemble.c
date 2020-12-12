@@ -386,10 +386,11 @@ ParserError parse_instruction_v1(Parser* parser, VTPInstructionV1* out) {
     if ((err = next_token(parser)) != PARSER_OK)
         return err;
 
-    if (parser->token.type == TOKEN_WHITESPACE) {
-        if ((err = next_token(parser)) != PARSER_OK)
-            return err;
-    }
+    if (parser->token.type != TOKEN_WHITESPACE)
+        return PARSER_INVALID_TOKEN_TYPE;
+
+    if ((err = next_token(parser)) != PARSER_OK)
+        return err;
 
     switch (out->code) {
         case VTP_INST_INCREMENT_TIME:

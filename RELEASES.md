@@ -16,6 +16,7 @@ TODO
   Changed specified endianness to big endian.
 - Fixed bug in vtp-disassemble: Output of time offset and channel select was
   the wrong way round
+- Fixed bug in vtp-assemble: Whitespace after instruction symbol wasn't enforced
 - The vtp-assemble and vtp-disassemble tools and the encode_potis example were
   adapted to use vtp_read_instruction_words / vtp_write_instruction_words
 - Removed an unnecessary include of stdio.h in fold.c
