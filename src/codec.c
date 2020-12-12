@@ -109,3 +109,25 @@ unsigned long vtp_get_time_offset_v1(const VTPInstructionV1* instruction) {
             return 0;
     }
 }
+
+void vtp_read_instruction_words(size_t n_words, const unsigned char in[], VTPInstructionWord out[]) {
+    size_t i;
+
+    for (i=0; i < n_words; i++) {
+        out[i] = ((unsigned long)in[i*4] << 24u) | ((unsigned long)in[i*4+1] << 16u) | ((unsigned long)in[i*4+2] << 8u) | in[i*4+3];
+    }
+}
+
+void vtp_write_instruction_words(size_t n_words, const VTPInstructionWord in[], unsigned char out[]) {
+    size_t i;
+    VTPInstructionWord instruction;
+
+    for (i=0; i < n_words; i++) {
+        instruction = in[i];
+
+        out[i*4]   = (instruction >> 24u) & 0xFFu;
+        out[i*4+1] = (instruction >> 16u) & 0xFFu;
+        out[i*4+2] = (instruction >> 8u) & 0xFFu;
+        out[i*4+3] = instruction & 0xFFu;
+    }
+}

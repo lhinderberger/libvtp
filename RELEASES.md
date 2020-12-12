@@ -1,14 +1,21 @@
 # Release Log of libvtp
 
 
-## v???? - In development
+## v0.3.0 - In development
 ### Summary
 TODO
+
+### Additions
+- The functions vtp_read_instruction_words and vtp_write_instruction_words were
+  added to provide a single source of truth for reading/writing VTP Binary
+  to/from byte arrays/streams.
 
 ### Modifications
 - The specification previously falsely claimed the endianness to be little
   endian, when in fact all VTP software so far has been big endian.
   Changed specified endianness to big endian.
+- The vtp-assemble and vtp-disassemble tools and the encode_potis example were
+  adapted to use vtp_read_instruction_words / vtp_write_instruction_words
 - Removed an unnecessary include of stdio.h in fold.c
 - Extended test for the fold algorithm
 - README: Added section about versioning and compatiblity

@@ -18,6 +18,19 @@
 
 #include <vtp/codec.h>
 
+
+const unsigned char readWriteTestBytes[32] = {
+0x10, 0x00, 0x00, 0xEA, 0x20, 0x00, 0x00, 0x7B, 0x10, 0x20, 0x01, 0x59,
+0x10, 0x20, 0xC9, 0xC8, 0x10, 0x10, 0x03, 0x15, 0x00, 0x00, 0x07, 0xD0,
+0x20, 0x00, 0x00, 0xEA, 0x10, 0x20, 0x02, 0x37
+};
+
+const VTPInstructionWord readWriteTestWords[8] = {
+0x100000ea, 0x2000007b, 0x10200159, 0x1020c9c8,
+0x10100315, 0x000007d0, 0x200000ea, 0x10200237
+};
+
+
 TEST increment_time_can_be_decoded(void) {
     const VTPInstructionWord encoded = 0x056789AB;
     VTPInstructionV1 decoded;
@@ -158,6 +171,27 @@ TEST array_can_be_encoded(void) {
     PASS();
 }
 
+TEST instruction_words_can_be_read_from_bytes(void) {
+    VTPInstructionWord wordsRead[8];
+
+    vtp_read_instruction_words(8, readWriteTestBytes, wordsRead);
+    ASSERT_MEM_EQ(readWriteTestWords, wordsRead, 8*sizeof(VTPInstructionWord));
+
+    PASS();
+}
+
+TEST instruction_words_can_be_written_to_bytes(void) {
+    unsigned char bytesWritten[32];
+
+    vtp_write_instruction_words(8, readWriteTestWords, bytesWritten);
+    ASSERT_MEM_EQ(readWriteTestBytes, bytesWritten, 32);
+
+    PASS();
+}
+
+
+
+
 GREATEST_SUITE(codec_suite) {
     RUN_TEST(increment_time_can_be_decoded);
     RUN_TEST(increment_time_can_be_encoded);
@@ -168,4 +202,6 @@ GREATEST_SUITE(codec_suite) {
     RUN_TEST(invalid_instruction_code_yields_error);
     RUN_TEST(array_can_be_decoded);
     RUN_TEST(array_can_be_encoded);
+    RUN_TEST(instruction_words_can_be_read_from_bytes);
+    RUN_TEST(instruction_words_can_be_written_to_bytes);
 }

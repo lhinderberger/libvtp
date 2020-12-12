@@ -59,15 +59,14 @@ bool areWithinHysteresis(int x, int y, int hysteresis) {
   return abs(x-y) <= hysteresis;
 }
 
-void encodeAndWriteVTPToSerial(const VTPInstructionV1* instruction) {  
+void encodeAndWriteVTPToSerial(const VTPInstructionV1* instruction) {
+  unsigned char buffer[4];
   VTPInstructionWord encodedInstruction;
   
   vtp_encode_instruction_v1(instruction, &encodedInstruction); //Note: Error checking was omitted
+  vtp_write_instruction_words(1, &encodedInstruction, buffer);
   
-  Serial.write((encodedInstruction >> 24) & 0xFF);
-  Serial.write((encodedInstruction >> 16) & 0xFF);
-  Serial.write((encodedInstruction >> 8) & 0xFF);
-  Serial.write(encodedInstruction & 0xFF);
+  Serial.write(buffer, 4);
   
   timeOfLastWrite = currentTime;
 }

@@ -62,6 +62,29 @@ VTPError vtp_encode_instructions_v1(const VTPInstructionV1 instructions[], VTPIn
 
 
 /**
+ * Reads VTP Binary instruction words from a byte array
+ *
+ * VTP Binary files are specified to be big-endian. This function can help correctly reading from VTP Binary files.
+ *
+ * @param n_words The number of words to be read.
+ * @param in A byte array containing VTP Binary instruction words, as big endian. Note that the size of this must be at least 4*n_words.
+ * @param out The instruction word array to write the result to. Note that the size of this must be at least n_words.
+ */
+void vtp_read_instruction_words(size_t n_words, const unsigned char in[], VTPInstructionWord out[]);
+
+/**
+ * Writes VTP Binary instruction words to a byte array
+ *
+ * VTP Binary files are specified to be big-endian. This function can help correctly writing to VTP Binary files.
+ *
+ * @param n_words The number of words that are to be written.
+ * @param in An array containing the instruction words that are to be written to the byte array.
+ * @param out The byte array to write to. Note that the size of this must be at least 4*n_words.
+ */
+void vtp_write_instruction_words(size_t n_words, const VTPInstructionWord in[], unsigned char out[]);
+
+
+/**
  * Calculates the time offset of a given VTPv1 instruction
  *
  * @param instruction The instruction of which the time offset shall be calculated

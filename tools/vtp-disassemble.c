@@ -146,13 +146,16 @@ void read_instruction(FILE* input, VTPInstructionV1* instruction_out, unsigned i
 
 VTPInstructionWord read_instruction_word(FILE* input) {
     unsigned char buffer[4];
+    VTPInstructionWord result;
 
     if (fread(buffer, 1, 4, input) != 4) {
         fputs("Unexpected EOF", stderr);
         exit(1);
     }
 
-    return ((unsigned long)buffer[0] << 24u) | ((unsigned long)buffer[1] << 16u) | ((unsigned long)buffer[2] << 8u) | buffer[3];
+    vtp_read_instruction_words(1, buffer, &result);
+
+    return result;
 }
 
 void write_instruction_assembly(FILE* output, const VTPInstructionV1* instruction) {

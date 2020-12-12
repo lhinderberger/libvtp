@@ -164,10 +164,7 @@ int validate_instruction(const VTPInstructionV1* instruction, unsigned int line)
 void write_instruction_binary(FILE* f, VTPInstructionWord instruction) {
     unsigned char buffer[4];
 
-    buffer[0] = (instruction >> 24u) & 0xFFu;
-    buffer[1] = (instruction >> 16u) & 0xFFu;
-    buffer[2] = (instruction >> 8u) & 0xFFu;
-    buffer[3] = instruction & 0xFFu;
+    vtp_write_instruction_words(1, &instruction, buffer);
 
     if (fwrite(buffer, 1, 4, f) != 4) {
         fputs("I/O error writing to output file\n", stderr);
