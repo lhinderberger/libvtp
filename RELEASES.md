@@ -1,9 +1,15 @@
 # Release Log of libvtp
 
 
-## v0.3.0 - In development
+## v0.3.0 - 2020-12-12
 ### Summary
-TODO
+This release features the new vtp_read_instruction_words and
+vtp_write_instruction_words function in codec.h that simplify reading/writing
+VTP Binary instruction words with respect to the correct endianness.
+
+The VTP Specification has been corrected with regards to VTP Binary endianness.
+
+This release also contains a number of bug fixes (see below).
 
 ### Additions
 - The functions vtp_read_instruction_words and vtp_write_instruction_words were
