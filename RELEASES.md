@@ -18,7 +18,7 @@ TODO
   adapted to use vtp_read_instruction_words / vtp_write_instruction_words
 - Removed an unnecessary include of stdio.h in fold.c
 - Extended test for the fold algorithm
-- README: Added section about versioning and compatiblity
+- README: Added section about versioning and compatibility
 
 ## v0.2.0 - 2020-12-08
 ### Summary
