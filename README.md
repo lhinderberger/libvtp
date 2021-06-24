@@ -1,3 +1,5 @@
+**This library has been deprecated in favor of [vtproto](https://github.com/lhinderberger/vtproto)**
+
 # libvtp
 A library for encoding and decoding vibrotactile patterns
 
